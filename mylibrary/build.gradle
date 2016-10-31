@@ -111,9 +111,10 @@ bintray {
 
     configurations = ['archives']
     pkg {
-        repo = "maven"
+        userOrg = "fanxianping1"
+        repo = "swipeView"
         group = group
-        name = "uploadExample"//发布到JCenter上的项目名字，必须填写
+        name = "uploadexample"//发布到JCenter上的项目名字，必须填写
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]
