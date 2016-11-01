@@ -159,8 +159,8 @@ bintray {
 
     configurations = ['archives']
     pkg {
-        userOrg = "fanxianping1"//这个必须制定，不然会一直报404 这个是你创建账号时指定的名称
-        repo = "swipeView"//仓库名称 必须在bintray上手动创建
+        userOrg = "fanxianping1"//这个必须制定，不然会一直报404 这个是你创建账号时指定的organization名称（自己的）
+        repo = "swipeView"//仓库名称 必须在bintray上手动创建（自己的）
         group = group//这个是你的groupid 唯一性
         name = "com.example.xpfan.grpc"//发布到JCenter上的项目名字，必须填写 唯一性
         websiteUrl = siteUrl
