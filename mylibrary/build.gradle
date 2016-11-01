@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'//improtant
 apply plugin: 'com.github.dcendents.android-maven'//for javadoc-task
-
+apply plugin: 'com.google.protobuf'
 
 android {
     compileSdkVersion 22
@@ -19,11 +19,53 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        disable 'InvalidPackage', 'HardcodedText'
+        textReport true
+        textOutput "stdout"
+        abortOnError false
+    }
 }
+//
+protobuf {
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.0.0'
+    }
+    plugins {
+        javalite {
+            artifact = "com.google.protobuf:protoc-gen-javalite:3.0.0"
+        }
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.0.0' // CURRENT_GRPC_VERSION
+        }
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.plugins {
+                javalite {}
+                grpc {
+                    // Options added to --grpc_out
+                    option 'lite'
+                }
+            }
+        }
+    }
+}
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+
+    compile 'com.google.code.findbugs:jsr305:3.0.0'
+    compile 'com.google.guava:guava:18.0'
+    compile 'com.squareup.okhttp:okhttp:2.2.0'
+
+    // You need to build grpc-java to obtain these libraries below.
+    compile 'io.grpc:grpc-okhttp:1.0.0' // CURRENT_GRPC_VERSION
+    compile 'io.grpc:grpc-protobuf-lite:1.0.0' // CURRENT_GRPC_VERSION
+    compile 'io.grpc:grpc-stub:1.0.0' // CURRENT_GRPC_VERSION
+    compile 'javax.annotation:javax.annotation-api:1.2'
 }
 
 //important
@@ -84,6 +126,12 @@ install {
 //生成source.jar
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
+    from('build/generated/source/proto/release/grpc')
+    from('build/generated/source/proto/release/javalite')
+    //去掉不需要打包的目录和文件
+    //exclude('BuildConfig.class', 'R.class')
+    //去掉R$开头的文件
+    //exclude{ it.name.startsWith('R$');}
     classifier = 'sources'
 }
 
