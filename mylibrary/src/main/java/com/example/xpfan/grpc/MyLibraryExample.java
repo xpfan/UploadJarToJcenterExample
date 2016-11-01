@@ -1,4 +1,4 @@
-package com.example.mylibrary;
+package com.example.xpfan.grpc;
 
 /**
  * Created by xpfan on 2016/11/1.
