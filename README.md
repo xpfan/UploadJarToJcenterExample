@@ -16,6 +16,19 @@ Upload Jar To Jcenter Example
 	bintray.apikey=bintray获取的API KEY
 7、以上都OK了之后，修改mylibrary模块下的build.gradle配置，将相应的配置修改为自己的配置。详细配置请见build.gradle配置文件中相应说明。
 
+8、所有步骤都OK了之后，就可以开始上传library了。
+步骤：
+1、打包（准备上传要使用的包）:命令：gradlew install
+2、打包成功之后使用上传命令：gradlew bintrayUpload
+
+9、步骤8都显示成功了之后，说明已经传到bintray上了；这个时候你就可以到之前创建的仓库中去查看上传的package了。
+       
+10、同步到JCenter(Maven中央仓库，其他人就可以使用了)。
+        首先进入package详情，点击右下角会看到一个叫"Add To JCenter"。按照步骤填写Group Id（group id填写成你打包时的group即可，保证唯一，本例是“com.example.xpfan.grpc”）和备注。点击“Send”按钮。
+        接下来就是等待审核通过就可以用了。
+ 
+       说明：这里我等了很久都看不到package链接到 Jcenter。但我还是可以引用package；当我晚一点登录的时候才看到已同步到JCenter，可能是网址数据同步的问题（毕竟人家是大数据网址嘛）。
+
 附：可验证本项目自身已上传的library
 maven:
 
