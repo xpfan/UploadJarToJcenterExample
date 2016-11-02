@@ -1,54 +1,54 @@
 # UploadJarToJcenterExample
 ##Upload Jar To Jcenter Android gradle Example
-###1�����ȣ����ر���Ŀ��
+###1、首先，下载本项目。
 
-      ��ʽһ��Use Git or checkout with SVN using the web URL;������뵽android��Ŀ�У�����ʹ��android studio ���ߣ���
-      
-      ��ʽ����download zip;��ѹ����android��Ŀ�У�����ʹ��android studio ���ߣ���
-      
-###2����Σ�����Ҫ��https://bintray.com/ע���˺š�
+      方式一：Use Git or checkout with SVN using the web URL;检出后导入到android项目中（本例使用android studio 工具）。
 
-	ע��ע���ʱ������õ��������˺�ֱ�ӵ�¼github�˺š�google�˺š����������������˺�������qq��163�����У������Թ����С���
-	
-       ��Ȼ�������Ҫ�Լ�ע�ᣬ�������һ���ӣ�qq��163������ע�᲻�ˣ���֤��һֱ�����������⣨�����Թ����У���
-       
-       ������ע����һ��hotmail���䣬��ע��bintry���˺žͳɹ��ˡ�
-       
-###3��ע�������֮���ٴ����ֿ⡣��� Add New Repository���Ӵ����ֿ⣬��סTypeѡ��Maven(������Maven),�ֿ����ֿ����Լ�������
+      方式二：download zip;解压导入android项目中（本例使用android studio 工具）。
 
-      ע�ͣ���������֮��������ֶ����Ӱ������������ǲ����ֶ�����������ʹ��Gradle��Ŀȥ�Զ������������ϴ���bintray�ϡ�
-      
-###5���ֿⴴ����֮������ȥ��ȡAPI KEY.
+###2、其次，你需要到https://bintray.com/注册账号。
 
-      ���裺���ϽǸ���ͷ�������˵��е����ManageOrganizations��,ҳ������󣬵����ർ���˵��лῴ��һ���С�API KEY���Ĳ˵�����ȡAPI KEY.
-      
-###6����Android Studio��Ŀ�е�local.properties�ļ��м�����������
+	注：注册的时候可以用第三方的账号直接登录github账号、google账号。（如果你第三方的账号邮箱是qq、163好像不行；本人试过不行。）
 
-	bintray.user=bintray���û���
-	
-	bintray.apikey=bintray��ȡ��API KEY
-	
-###7�����϶�OK��֮���޸�mylibraryģ���µ�build.gradle���ã�����Ӧ�������޸�Ϊ�Լ������á���ϸ�������build.gradle�����ļ�����Ӧ˵����
+       当然，如果你要自己注册，这里会有一个坑，qq、163的邮箱注册不了，验证会一直报邮箱有问题（本人试过不行）。
 
-###8�����в��趼OK��֮�󣬾Ϳ��Կ�ʼ�ϴ�library�ˡ�
-	���裺
-		1�������׼���ϴ�Ҫʹ�õİ���:���gradlew install
-		
-		2������ɹ�֮��ʹ���ϴ����gradlew bintrayUpload
+       后来我注册了一个hotmail邮箱，再注册bintry的账号就成功了。
 
-###9������8����ʾ�ɹ���֮��˵���Ѿ�����bintray���ˣ����ʱ����Ϳ��Ե�֮ǰ�����Ĳֿ���ȥ�鿴�ϴ���package�ˡ�
-       
-###10��ͬ����JCenter(Maven����ֿ⣬�����˾Ϳ���ʹ����)��
+###3、注册完好了之后，再创建仓库。点击 Add New Repository链接创建仓库，记住Type选择Maven(这里是Maven),仓库名字可以自己命名。
 
-        ���ȣ�����package���飬������½ǻῴ��һ����"Add To JCenter"�����ղ�����дGroup Id��group id��д������ʱ��group���ɣ���֤Ψһ�������ǡ�com.example.xpfan.grpc�����ͱ�ע��
-      
-        �����Send����ť��
-        
-        ���������ǵȴ����ͨ���Ϳ������ˡ�
- 
-       ˵���������ҵ��˺ܾö�������package���ӵ� Jcenter�����һ��ǿ�������package��������һ���¼��ʱ��ſ�����ͬ����JCenter����������ַ����ͬ�������⣨�Ͼ��˼��Ǵ�������ַ���
+      注释：创建完了之后你可以手动添加包名；这里我们不用手动创建，我们使用Gradle项目去自动构建包名并上传到bintray上。
 
-###��������֤����Ŀ�������ϴ���library
+###5、仓库创建好之后，首先去获取API KEY.
+
+      步骤：右上角个人头像下拉菜单中点击“ManageOrganizations”,页面出来后，点击左侧导航菜单中会看到一个叫“API KEY”的菜单，获取API KEY.
+
+###6、在Android Studio项目中的local.properties文件中加入两行配置
+
+	bintray.user=bintray的用户名
+
+	bintray.apikey=bintray获取的API KEY
+
+###7、以上都OK了之后，修改mylibrary模块下的build.gradle配置，将相应的配置修改为自己的配置。详细配置请见build.gradle配置文件中相应说明。
+
+###8、所有步骤都OK了之后，就可以开始上传library了。
+	步骤：
+		1、打包（准备上传要使用的包）:命令：gradlew install
+
+		2、打包成功之后使用上传命令：gradlew bintrayUpload
+
+###9、步骤8都显示成功了之后，说明已经传到bintray上了；这个时候你就可以到之前创建的仓库中去查看上传的package了。
+
+###10、同步到JCenter(Maven中央仓库，其他人就可以使用了)。
+
+        首先，进入package详情，点击右下角会看到一个叫"Add To JCenter"。按照步骤填写Group Id（group id填写成你打包时的group即可，保证唯一，本例是“com.example.xpfan.grpc”）和备注，
+
+        点击“Send”按钮。
+
+        接下来就是等待审核通过就可以用了。
+
+       说明：这里我等了很久都看不到package链接到 Jcenter。但我还是可以引用package；当我晚一点登录的时候才看到已同步到JCenter，可能是网址数据同步的问题（毕竟人家是大数据网址嘛）。
+
+###附：可验证本项目自身已上传的library
 	maven:
 
 		<dependency>
@@ -66,4 +66,4 @@
 		  <artifact name='$AID' ext='pom'></artifact>
 		</dependency>
 
-#����������©���뷢�ʼ���46273600@qq.com ָ����һ������
+#步骤如有遗漏，请发邮件到46273600@qq.com 指正，一起交流。
