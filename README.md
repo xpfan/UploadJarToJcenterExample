@@ -40,13 +40,15 @@
 
 ###10、同步到JCenter(Maven中央仓库，其他人就可以使用了)。
 
-        首先，进入package详情，点击右下角会看到一个叫"Add To JCenter"。按照步骤填写Group Id（group id填写成你打包时的group即可，保证唯一，本例是“com.example.xpfan.grpc”）和备注，
+        首先，进入package详情，点击右下角会看到一个叫"Add To JCenter"。
 
-        点击“Send”按钮。
+        按照步骤填写Group Id（group id填写成你打包时的group即可，保证唯一，本例是“com.example.xpfan.grpc”）和备注，点击“Send”按钮。
 
         接下来就是等待审核通过就可以用了。
 
-       说明：这里我等了很久都看不到package链接到 Jcenter。但我还是可以引用package；当我晚一点登录的时候才看到已同步到JCenter，可能是网址数据同步的问题（毕竟人家是大数据网址嘛）。
+       说明：这里我等了很久都看不到package链接到 Jcenter。但我还是可以引用package；
+
+       当我晚一点登录的时候才看到已同步到JCenter，可能是网址数据同步的问题（毕竟人家是大数据网址嘛）。
 
 ###附：可验证本项目自身已上传的library
 	maven:
@@ -66,4 +68,4 @@
 		  <artifact name='$AID' ext='pom'></artifact>
 		</dependency>
 
-#步骤如有遗漏，请发邮件到46273600@qq.com 指正，一起交流。
+###步骤如有遗漏，请发邮件到46273600@qq.com 指正，一起交流。
